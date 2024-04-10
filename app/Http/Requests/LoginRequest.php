@@ -38,11 +38,4 @@ class LoginRequest extends FormRequest
             'password.min'      => 'La contraseña debe tener al menos 8 caracteres',
         ];
     }
-
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'atributos' => json_decode($this->get('atributos'), true),
-        ]);
-    }
 }
