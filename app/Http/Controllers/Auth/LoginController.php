@@ -5,19 +5,17 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\HasMiddleware;
-use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Support\Facades\Auth;
 
-class LoginController extends Controller implements HasMiddleware
+class LoginController extends Controller
 {
-
     public function index()
     {
         return view('auth.login');
     }
 
-    public function login(LoginRequest $request){
+    public function login(LoginRequest $request)
+    {
         $credentials = $request->validated();#validacion
         //validated retorna un array
         //login
@@ -43,10 +41,4 @@ class LoginController extends Controller implements HasMiddleware
         return redirect('/');
     }
 
-    public static function middleware()
-    {
-        return [
-            new Middleware('guest', except: ['logout']),
-        ];
-    }
 }
