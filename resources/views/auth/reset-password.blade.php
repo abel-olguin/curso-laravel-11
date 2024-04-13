@@ -11,7 +11,7 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     {{_('Login')}}
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="{{ route('password.reset.update') }}" method="post">
+                <form class="space-y-4 md:space-y-6" action="{{ route('auth.password.reset.update') }}" method="post">
 
                     @csrf
 
