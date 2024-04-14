@@ -18,6 +18,7 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
         $user = User::create($request->validated());
+
         Notification::send($user, new WelcomeNotification); #asincrono inmediato
 
         #Notification::sendNow($user, new WelcomeNotification); #sincrono tiempo de espera

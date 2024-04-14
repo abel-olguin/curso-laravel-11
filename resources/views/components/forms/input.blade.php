@@ -3,7 +3,7 @@
     'label' => 'Input',
     'type'  => 'text',
     'name'  => 'input',
-    'placeholder'  => 'input',
+    'placeholder'  => '',
     'value'  => '',
     'required'  => false,
     'readonly'  => false,

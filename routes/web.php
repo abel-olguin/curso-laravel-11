@@ -3,7 +3,11 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Dashboard\PostController;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', fn() => view('welcome'))->name('home');
+
 
 #Auth
 Route::name('auth.')->group(function () {
@@ -32,5 +36,9 @@ Route::name('auth.')->group(function () {
 });
 
 
-Route::get('/', fn() => view('welcome'))->name('home');
-Route::get('dashboard', fn() => view('welcome'))->name('dashboard.index');
+#Dashboard
+Route::name('dashboard.')->prefix('dashboard')->group(function () {
+    Route::get('/', fn() => view('welcome'))->name('index');
+
+    Route::resource('posts', PostController::class)->except('show');
+});

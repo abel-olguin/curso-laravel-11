@@ -7,8 +7,9 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <main class="container mx-auto">
-        @yield('content')
-    </main>
+<x-navbar/>
+<main class="container mx-auto my-5">
+    @yield('content')
+</main>
 </body>
 </html>
