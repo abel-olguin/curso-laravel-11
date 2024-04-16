@@ -9,3 +9,19 @@
 .button-default {
     @apply rounded-md bg-cyan-700 px-3 py-1 hover:bg-cyan-500 hover:shadow-lg shadow
 }
+
+.alert-success {
+    @apply bg-green-500
+}
+
+.alert-error {
+    @apply bg-red-600
+}
+
+.alert-warning {
+    @apply bg-orange-500
+}
+
+.close-alert {
+    @apply bg-black bg-opacity-20 px-4 hover:bg-opacity-40
+}

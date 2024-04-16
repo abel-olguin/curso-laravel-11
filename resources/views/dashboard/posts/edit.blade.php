@@ -11,10 +11,14 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     {{_('Edit post')}} #{{$post->id}}
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="{{ $route }}" method="post">
+                <form class="space-y-4 md:space-y-6" action="{{ route('dashboard.posts.update', $post->id) }}"
+                      method="post">
                     @csrf
                     @method('put')
-                    @include('dashboard.posts.form', ['route' => route('dashboard.posts.update', $post->id), 'post' => $post])
+
+
+
+                    @include('dashboard.posts.form', ['post' => $post])
                 </form>
             </div>
         </div>

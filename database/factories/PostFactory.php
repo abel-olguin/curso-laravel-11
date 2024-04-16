@@ -18,6 +18,7 @@ class PostFactory extends Factory
     {
         $title = $this->faker->sentence();
         return [
+            #'user_id'     => fn() => User::factory()->create(),
             'title'       => $title,
             'slug'        => str($title)->slug(),
             'description' => fake()->realText(),

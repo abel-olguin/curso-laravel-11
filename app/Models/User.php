@@ -45,6 +45,11 @@ class User extends Authenticatable
         $this->notify(new PasswordResetNotification($url));
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *

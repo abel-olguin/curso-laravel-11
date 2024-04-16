@@ -22,9 +22,11 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'       => 'required|string|max:255',
-            'slug'        => "required|unique:posts,slug,{$this->post->id}|max:255",
-            'description' => 'required|string|min:5',
+            'title'        => 'required|string|max:255',
+            'categories'   => 'required|array',
+            'categories.*' => 'required|max:50',
+            'slug'         => "required|unique:posts,slug,{$this->post->id}|max:255",
+            'description'  => 'required|string|min:5',
         ];
     }
 
@@ -33,8 +35,13 @@ class UpdatePostRequest extends FormRequest
         $cambioTitulo = $this->post->title !== $this->get('title');
         $slug         = str($this->get('title'))->slug() . '-' . uniqid();
 
+        $categoriesArray = explode(',', $this->get('categories'));
+        $categoriesArray = array_map('trim', $categoriesArray);
+
+
         $this->merge([
-            'slug' => $cambioTitulo ? $slug : $this->post->slug
+            'slug'       => $cambioTitulo ? $slug : $this->post->slug,
+            'categories' => $categoriesArray
         ]);
     }
 }

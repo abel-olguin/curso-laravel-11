@@ -11,9 +11,9 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     {{_('Create new post')}}
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="{{ $route }}" method="post">
+                <form class="space-y-4 md:space-y-6" action="{{ route('dashboard.posts.store') }}" method="post">
                     @csrf
-                    @include('dashboard.posts.form', ['route' => route('dashboard.posts.store')])
+                    @include('dashboard.posts.form')
                 </form>
             </div>
         </div>

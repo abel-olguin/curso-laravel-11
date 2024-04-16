@@ -147,27 +147,16 @@
                        class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
                        aria-current="page">Home</a>
                 </li>
+
                 <li>
-                    <a href="{{route('dashboard.posts.index')}}"
-                       class="navbar-button">Posts</a>
-                </li>
-                <li>
-                    <a href="#"
-                       class="navbar-button">Services</a>
+                    <a href="{{route('auth.index')}}"
+                       class="navbar-button">Log in</a>
                 </li>
                 <li>
                     <a href="#"
                        class="navbar-button">Pricing</a>
                 </li>
-                <li>
-                    <form action="{{route('auth.logout')}}" method="post">
-                        @csrf
-                        <button type="submit"
-                                class="navbar-button">Logout
-                        </button>
-                    </form>
 
-                </li>
             </ul>
         </div>
     </div>

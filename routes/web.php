@@ -37,8 +37,8 @@ Route::name('auth.')->group(function () {
 
 
 #Dashboard
-Route::name('dashboard.')->prefix('dashboard')->group(function () {
-    Route::get('/', fn() => view('welcome'))->name('index');
+Route::name('dashboard.')->middleware('auth')->prefix('dashboard')->group(function () {
+    Route::get('/', fn() => view('dashboard.index'))->name('index');
 
     Route::resource('posts', PostController::class)->except('show');
 });

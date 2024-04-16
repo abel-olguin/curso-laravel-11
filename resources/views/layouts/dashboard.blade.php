@@ -9,6 +9,9 @@
 <body>
 <x-navbar/>
 <main class="container mx-auto my-5">
+    <x-alert type="success"/>
+    <x-alert type="error"/>
+    <x-alert type="warning"/>
     @yield('content')
 </main>
 </body>

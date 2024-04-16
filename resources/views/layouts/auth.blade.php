@@ -7,8 +7,11 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-    <main class="container mx-auto">
-        @yield('content')
-    </main>
+<main class="container mx-auto">
+    <x-alert type="success"/>
+    <x-alert type="error"/>
+    <x-alert type="warning"/>
+    @yield('content')
+</main>
 </body>
 </html>

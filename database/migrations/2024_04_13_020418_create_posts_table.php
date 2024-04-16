@@ -12,12 +12,15 @@ return new class extends Migration {
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
+            #$table->foreignIdFor(\App\Models\Category::class)->constrained(); #category_id
             $table->foreignIdFor(\App\Models\User::class)->constrained();
+            #$table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('slug');
             $table->string('description');
 
             #$table->softDeletes();
+            #$table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }

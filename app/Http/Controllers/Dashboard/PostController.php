@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Helpers\CategoryHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\StorePostRequest;
 use App\Http\Requests\Dashboard\UpdatePostRequest;
@@ -9,12 +10,19 @@ use App\Models\Post;
 
 class PostController extends Controller
 {
+    public function __construct(
+        public CategoryHelper $categoryHelper
+    )
+    {
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = Post::latest()->paginate();
+        #auth()->user() = new User()
+        $posts = auth()->user()->posts()->latest()->paginate();
         return view('dashboard.posts.index', compact('posts'));
     }
 
@@ -23,11 +31,16 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        $data            = $request->validated();
-        $data['user_id'] = auth()->id();
-        Post::create($data); # insert into posts (...) values (...)
+        return transactional(function () use ($request) {
+            $data            = $request->safe()->except('categories');
+            $data['user_id'] = auth()->id();
 
-        return redirect()->route('dashboard.posts.index');
+            $post = Post::create($data); # insert into posts (...) values (...)
+
+            $this->categoryHelper->attachPostCategories($post, $request->get('categories'));
+
+            return redirect()->route('dashboard.posts.index')->with('success', _('Post created successfully'));
+        });
     }
 
     /**
@@ -44,7 +57,8 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('dashboard.posts.edit', compact('post'));
+        $categories = $post->categories->pluck('name')->implode(',');
+        return view('dashboard.posts.edit', compact('post', 'categories'));
     }
 
     /**
@@ -52,8 +66,11 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $post->update($request->validated());
-        return redirect()->route('dashboard.posts.index');
+        $data = $request->safe()->except('categories');
+
+        $post->update($data);
+        $this->categoryHelper->syncPostCategories($post, $request->get('categories'));
+        return redirect()->route('dashboard.posts.index')->with('success', _('Post updated successfully'));
     }
 
     /**

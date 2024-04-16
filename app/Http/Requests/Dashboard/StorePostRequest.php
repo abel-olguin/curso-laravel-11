@@ -22,16 +22,26 @@ class StorePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'       => 'required|string|max:255',
-            'slug'        => 'required|unique:posts,slug|max:255',
-            'description' => 'required|string|min:5',
+            'title'        => 'required|string|max:255',
+            'categories'   => 'required|array',
+            'categories.*' => 'required|max:50',
+            'slug'         => 'required|unique:posts,slug|max:255',
+            'description'  => 'required|string|min:5',
         ];
     }
 
     protected function prepareForValidation()
     {
+        $categoriesArray = explode(',', $this->get('categories'));
+        /*
+        convertir un string a un array usando la coma para crear
+        elementos 'prueba1,prueba2,prueba3' => ['prueba1','prueba2','prueba3']
+        */
+        $categoriesArray = array_map('trim', $categoriesArray);
+        # [' prueba1 ',' prueba2 ',' prueba 3 '] => ['prueba1','prueba2','prueba 3']
         $this->merge([
-            'slug' => str($this->get('title'))->slug() . '-' . uniqid()
+            'slug'       => str($this->get('title'))->slug() . '-' . uniqid(),
+            'categories' => $categoriesArray
         ]);
     }
 }
