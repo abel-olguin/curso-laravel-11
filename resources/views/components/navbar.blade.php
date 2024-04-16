@@ -140,6 +140,25 @@
                 </svg>
             </button>
         </div>
+
+        <x-nav-dropdown :title="auth()->user()->name" :image="auth()->user()->image">
+            <li>
+                <a href="{{route('dashboard.profile.edit')}}"
+                   class="dropdown-item"
+                   role="menuitem">Profile</a>
+            </li>
+            <li>
+                <form action="{{route('auth.logout')}}" method="post" class="w-full">
+                    @csrf
+                    <button type="submit"
+                            class="dropdown-item w-full text-left">
+                        Logout
+                    </button>
+                </form>
+            </li>
+
+        </x-nav-dropdown>
+
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-language">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
                 <li>
@@ -159,15 +178,7 @@
                     <a href="#"
                        class="navbar-button">Pricing</a>
                 </li>
-                <li>
-                    <form action="{{route('auth.logout')}}" method="post">
-                        @csrf
-                        <button type="submit"
-                                class="navbar-button">Logout
-                        </button>
-                    </form>
 
-                </li>
             </ul>
         </div>
     </div>

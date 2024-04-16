@@ -41,7 +41,7 @@ class StorePostRequest extends FormRequest
         # [' prueba1 ',' prueba2 ',' prueba 3 '] => ['prueba1','prueba2','prueba 3']
         $this->merge([
             'slug'       => str($this->get('title'))->slug() . '-' . uniqid(),
-            'categories' => $categoriesArray
+            'categories' => array_unique($categoriesArray)
         ]);
     }
 }

@@ -41,7 +41,7 @@ class UpdatePostRequest extends FormRequest
 
         $this->merge([
             'slug'       => $cambioTitulo ? $slug : $this->post->slug,
-            'categories' => $categoriesArray
+            'categories' => array_unique($categoriesArray)
         ]);
     }
 }

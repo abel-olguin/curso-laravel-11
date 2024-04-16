@@ -4,9 +4,11 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Dashboard\PostController;
+use App\Http\Controllers\Dashboard\ProfileController;
+use App\Http\Controllers\Public\PostController as PublicPostController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', fn() => view('welcome'))->name('home');
+Route::get('/', [PublicPostController::class, 'index'])->name('home');
 
 
 #Auth
@@ -41,4 +43,7 @@ Route::name('dashboard.')->middleware('auth')->prefix('dashboard')->group(functi
     Route::get('/', fn() => view('dashboard.index'))->name('index');
 
     Route::resource('posts', PostController::class)->except('show');
+
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
 });

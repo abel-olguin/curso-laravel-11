@@ -25,6 +25,16 @@ class CategoryHelper
 
         $notExistingCategories = array_diff($categories, $existingCategories->pluck('name')->toArray());
 
+        # forma optima
+        $mapNotExistingCategories = array_map(fn($category) => [
+            'name' => $category,
+            'slug' => str($category)->slug()
+        ], $notExistingCategories);
+        Category::insert($mapNotExistingCategories);
+        $newCategories = Category::whereIn('name', $notExistingCategories)->select('id', 'name')->get();
+
+        /*
+        # forma menos optima
         $newCategories = collect();
         foreach ($notExistingCategories as $category) {
             $category = Category::create([
@@ -32,7 +42,7 @@ class CategoryHelper
                 'slug' => str($category)->slug()
             ]);
             $newCategories->add($category);
-        }
+        }*/
 
         return $existingCategories->merge($newCategories);
     }
