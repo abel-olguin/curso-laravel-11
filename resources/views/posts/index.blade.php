@@ -5,7 +5,7 @@
 @section('content')
 
     <div class="relative mt-5">
-        <div class="grid grid-cols-3 gap-5">
+        <div class="grid gap-5">
             @foreach($posts as $post)
                 <x-post-card :post="$post"/>
             @endforeach

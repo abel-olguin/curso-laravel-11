@@ -5,11 +5,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\ProfileController;
-use App\Http\Controllers\Public\PostController as PublicPostController;
 use Illuminate\Support\Facades\Route;
-
-Route::get('/', [PublicPostController::class, 'index'])->name('home');
-
 
 #Auth
 Route::name('auth.')->group(function () {
