@@ -39,7 +39,7 @@ class PostController extends Controller
 
             $this->categoryHelper->attachPostCategories($post, $request->get('categories'));
 
-            return redirect()->route('dashboard.posts.index')->with('success', _('Post created successfully'));
+            return redirect()->route('dashboard.posts.index')->with('success', __('Post created successfully'));
         });
     }
 
@@ -70,7 +70,7 @@ class PostController extends Controller
 
         $post->update($data);
         $this->categoryHelper->syncPostCategories($post, $request->get('categories'));
-        return redirect()->route('dashboard.posts.index')->with('success', _('Post updated successfully'));
+        return redirect()->route('dashboard.posts.index')->with('success', __('Post updated successfully'));
     }
 
     /**

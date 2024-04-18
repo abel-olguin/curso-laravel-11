@@ -3,8 +3,9 @@
 @section('title', 'Page Title')
 
 @section('content')
-    <a class="button-default" href="{{route('dashboard.posts.create')}}">{{_('Create new post')}}</a>
-
+    <a class="button-default"
+       href="{{route('dashboard.posts.create')}}">{{__('Create new post')}}</a>
+    {{--__('Create new post :name', ['name' => 'Hola mundo'])--}}
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-5">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

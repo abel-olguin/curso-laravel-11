@@ -6,8 +6,8 @@
     <title>App Name - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
-<main class="container mx-auto">
+<body class="dark:text-gray-100 dark:bg-gray-500">
+<main class="container mx-auto dark:text-gray-100">
     <x-alert type="success"/>
     <x-alert type="error"/>
     <x-alert type="warning"/>

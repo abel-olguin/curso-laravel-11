@@ -6,13 +6,16 @@
     <title>App Name - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="dark:text-gray-100 dark:bg-gray-500">
 <x-navbar/>
-<main class="container mx-auto my-5">
+<main class="container mx-auto my-5 dark:text-gray-100">
     <x-alert type="success"/>
     <x-alert type="error"/>
     <x-alert type="warning"/>
     @yield('content')
 </main>
+
+<x-footer/>
+
 </body>
 </html>

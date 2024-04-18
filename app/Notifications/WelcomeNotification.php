@@ -34,7 +34,7 @@ class WelcomeNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject(_('Welcome to the laravel 11 course'))
+            ->subject(__('Welcome to the laravel 11 course'))
             ->line('The introduction to the notification.')
             ->action('Go to page', url('/'))
             ->line('Thank you for using our application!');

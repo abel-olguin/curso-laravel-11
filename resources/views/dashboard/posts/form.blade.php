@@ -6,6 +6,6 @@
                :value=" $categories ?? '' "/>
 
 <button type="submit" class="w-full rounded shadow bg-cyan-500 hover:bg-cyan-600 py-2">
-    {{_('Save')}}
+    {{__('Save')}}
 </button>
 

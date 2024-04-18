@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\ProfileController;
-use Illuminate\Support\Facades\Route;
 
 #Auth
 Route::name('auth.')->group(function () {
@@ -35,11 +36,13 @@ Route::name('auth.')->group(function () {
 
 
 #Dashboard
-Route::name('dashboard.')->middleware('auth')->prefix('dashboard')->group(function () {
-    Route::get('/', fn() => view('dashboard.index'))->name('index');
+Route::name('dashboard.')
+     ->middleware('auth')
+     ->prefix('dashboard')->group(function () {
+        Route::get('/', fn() => view('dashboard.index'))->name('index');
 
-    Route::resource('posts', PostController::class)->except('show');
+        Route::resource('posts', PostController::class)->except('show');
 
-    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
-});
+        Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+    });

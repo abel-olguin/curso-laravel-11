@@ -11,11 +11,16 @@ return Application::configure(basePath: dirname(__DIR__))
                       commands: __DIR__ . '/../routes/console.php',
                       health: '/up',
                       then: function () {
-                          Route::middleware('web')->group(base_path('routes/public.php'));
+                          Route::middleware('web')
+                               ->group(base_path('routes/public.php'));
                       }
                   )
-                  ->withMiddleware(function (Middleware $middleware) {
+                  ->withMiddleware(function (Middleware $middleware) {#globales
                       $middleware->redirectGuestsTo('/login');
+                      #$middleware->use([\App\Http\Middleware\LocalizationMiddleware::class]);
+                      $middleware->web(append: [
+                          \App\Http\Middleware\LocalizationMiddleware::class
+                      ]);
                   })
                   ->withExceptions(function (Exceptions $exceptions) {
                       //
