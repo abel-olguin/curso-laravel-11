@@ -6,7 +6,9 @@ use App\Helpers\CategoryHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\StorePostRequest;
 use App\Http\Requests\Dashboard\UpdatePostRequest;
+use App\Http\Requests\EditPostRequest;
 use App\Models\Post;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -57,6 +59,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
+        Gate::authorize('edit', $post);
         $categories = $post->categories->pluck('name')->implode(',');
         return view('dashboard.posts.edit', compact('post', 'categories'));
     }
@@ -66,11 +69,13 @@ class PostController extends Controller
      */
     public function update(UpdatePostRequest $request, Post $post)
     {
-        $data = $request->safe()->except('categories');
+        return transactional(function () use ($request, $post) {
+            $data = $request->safe()->except('categories');
 
-        $post->update($data);
-        $this->categoryHelper->syncPostCategories($post, $request->get('categories'));
-        return redirect()->route('dashboard.posts.index')->with('success', __('Post updated successfully'));
+            $post->update($data);
+            $this->categoryHelper->syncPostCategories($post, $request->get('categories'));
+            return redirect()->route('dashboard.posts.index')->with('success', __('Post updated successfully'));
+        });
     }
 
     /**
@@ -82,4 +87,5 @@ class PostController extends Controller
 
         return redirect()->route('dashboard.posts.index');
     }
+
 }

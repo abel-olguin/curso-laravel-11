@@ -17,6 +17,7 @@ return Application::configure(basePath: dirname(__DIR__))
                   )
                   ->withMiddleware(function (Middleware $middleware) {#globales
                       $middleware->redirectGuestsTo('/login');
+                     
                       #$middleware->use([\App\Http\Middleware\LocalizationMiddleware::class]);
                       $middleware->web(append: [
                           \App\Http\Middleware\LocalizationMiddleware::class
