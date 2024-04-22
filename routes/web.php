@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Dashboard\MediaController;
 use App\Http\Controllers\Dashboard\PostController;
 use App\Http\Controllers\Dashboard\ProfileController;
+use Illuminate\Support\Facades\Route;
 
 #Auth
 Route::name('auth.')->group(function () {
@@ -45,4 +45,6 @@ Route::name('dashboard.')
 
         Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::post('media', [MediaController::class, 'store'])
+             ->name('media.upload');
     });

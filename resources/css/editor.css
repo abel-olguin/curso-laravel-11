@@ -1,0 +1,30 @@
+@media (prefers-color-scheme: dark) {
+    .codex-editor ::selection {
+        @apply bg-blue-800
+    }
+
+    .ce-toolbar__plus, .ce-toolbar__settings-btn {
+        @apply text-white hover:text-gray-600
+    }
+
+    .ce-inline-toolbar, .ce-conversion-toolbar, .ce-inline-tool-input, .ce-conversion-tool__icon,
+    .ce-popover, .ce-popover-item__icon {
+        @apply bg-gray-800
+    }
+
+    .cdx-search-field {
+        @apply bg-gray-900 text-gray-100
+    }
+
+    .ce-conversion-tool, .ce-inline-toolbar__dropdown, .ce-inline-tool, .ce-popover-item {
+        @apply hover:bg-cyan-900/[.5]
+    }
+
+    .ce-popover-item:hover:not(.ce-popover-item--no-hover) {
+        @apply bg-cyan-900/[.5]
+    }
+
+    .ce-popover-item {
+        @apply text-gray-100
+    }
+}

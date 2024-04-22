@@ -1,6 +1,4 @@
 import './bootstrap';
-import Alpine from 'alpinejs'
+//cosas de uso general
 
-window.Alpine = Alpine
 
-Alpine.start()
