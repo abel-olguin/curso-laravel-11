@@ -27,4 +27,8 @@
     .ce-popover-item {
         @apply text-gray-100
     }
+
+    .ce-block--selected .ce-block__content{
+        @apply bg-gray-500
+    }
 }

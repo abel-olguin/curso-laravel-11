@@ -12,7 +12,8 @@
     @vite(['resources/js/alpine.js'])
 </head>
 <body class="dark:text-gray-100 dark:bg-gray-500" x-data="{menuOpen: false}">
-<x-sidebar/>
+<x-layouts.navbar/>
+<x-layouts.sidebar/>
 <main class="container mx-auto my-5 dark:text-gray-100">
     <x-alert type="success"/>
     <x-alert type="error"/>
@@ -21,7 +22,7 @@
     @yield('content')
 </main>
 
-<x-footer/>
+<x-layouts.footer/>
 
 </body>
 </html>
