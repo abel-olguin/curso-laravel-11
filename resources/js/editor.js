@@ -10,6 +10,7 @@ document.addEventListener('alpine:init', () => {
         open: false,
         editor: null,
         init() {
+            console.log('here')
             this.editor = new EditorJS({
                 holder: 'editor',
                 minHeight: 20,
@@ -61,8 +62,8 @@ document.addEventListener('alpine:init', () => {
             })
         },
         beforeSend() {
-            this.editor.save().then((outputData) => {
-                document.getElementById('description').value = JSON.stringify(outputData)
+            this.editor.save().then((data) => {
+                document.getElementById('description').value = data.blocks.length ? JSON.stringify(data) : ''
                 document.getElementById('post-form').submit()
             }).catch((error) => {
                 console.log('Saving failed: ', error)

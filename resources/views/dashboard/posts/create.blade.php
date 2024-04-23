@@ -2,6 +2,10 @@
 
 @section('title', 'Page Title')
 
+@push('scripts')
+    @vite(['resources/js/editor.js'])
+@endpush
+
 @section('content')
 
     <div class="mx-auto flex min-h-screen items-center justify-center">
@@ -11,7 +15,11 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                     {{__('Create new post')}}
                 </h1>
-                <form class="space-y-4 md:space-y-6" action="{{ route('dashboard.posts.store') }}" method="post">
+                <form class="space-y-4 md:space-y-6" action="{{ route('dashboard.posts.store') }}" method="post"
+                      x-data="editor"
+                      id="post-form"
+                      @submit.prevent="beforeSend"
+                >
                     @csrf
                     @include('dashboard.posts.form')
                 </form>

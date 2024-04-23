@@ -11,8 +11,8 @@
 
     @vite(['resources/js/alpine.js'])
 </head>
-<body class="dark:text-gray-100 dark:bg-gray-500">
-<x-navbar/>
+<body class="dark:text-gray-100 dark:bg-gray-500" x-data="{menuOpen: false}">
+<x-sidebar/>
 <main class="container mx-auto my-5 dark:text-gray-100">
     <x-alert type="success"/>
     <x-alert type="error"/>

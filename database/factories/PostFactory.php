@@ -21,7 +21,7 @@ class PostFactory extends Factory
             #'user_id'     => fn() => User::factory()->create(),
             'title'       => $title,
             'slug'        => str($title)->slug(),
-            'description' => fake()->realText(),
+            'description' => '{"time":1713831103316,"blocks":[{"id":"lr8Evj3EF8","type":"paragraph","data":{"text":"Contenido de prueba"}}],"version":"2.29.1"}',
         ];
     }
 }
