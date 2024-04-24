@@ -6,7 +6,7 @@ import Quote from "@editorjs/quote";
 import Embed from "@editorjs/embed";
 
 document.addEventListener('alpine:init', () => {
-    Alpine.data('editor', (data = {}) => ({
+    Alpine.data('editor', (data = {}, readOnly = false) => ({
         open: false,
         editor: null,
         init() {
@@ -17,6 +17,7 @@ document.addEventListener('alpine:init', () => {
                 inlineToolbar: ['link', 'bold', 'italic',],
                 placeholder: 'Aquí tu contenido',
                 data,
+                readOnly,
                 tools: {
                     header: {
                         class: Header,
@@ -33,7 +34,7 @@ document.addEventListener('alpine:init', () => {
                                 byFile: '/dashboard/media',
                             },
                             additionalRequestData: {
-                                _token: document.querySelector('meta[name="csrf"]').content
+                                _token: document.querySelector('meta[name="csrf"]')?.content
                             }
                         },
 

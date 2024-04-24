@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>App Name - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+    @stack('scripts')
+    
     @vite(['resources/js/alpine.js'])
 </head>
 <body class="dark:text-gray-100 dark:bg-gray-500">

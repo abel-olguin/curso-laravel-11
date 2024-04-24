@@ -11,7 +11,7 @@
                 <h2 class="font-bold text-2xl ">{{$post->title}}</h2>
             </a>
             <p class="dark:text-gray-500">
-                {{str($post->description)->excerpt()}}
+                {{$post->excerpt}}
             </p>
         </div>
         <div class="flex gap-3">

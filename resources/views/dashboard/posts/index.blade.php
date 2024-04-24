@@ -34,7 +34,7 @@
                         {{$post->title}}
                     </td>
                     <td class="px-6 py-4">
-                        {{str($post->description)->excerpt()}}
+                        {{$post->excerpt}}
                     </td>
                     <td>
                         <div class="flex gap-5">
