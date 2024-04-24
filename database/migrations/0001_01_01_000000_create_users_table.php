@@ -20,6 +20,8 @@ return new class extends Migration {
             $table->string('username')->nullable()->unique();
             $table->string('slug')->nullable()->unique();
             $table->string('image')->nullable();
+            $table->date('birthday')->nullable();
+            $table->boolean('active')->nullable();
 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

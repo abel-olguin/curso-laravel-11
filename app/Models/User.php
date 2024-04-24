@@ -4,7 +4,9 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Notifications\PasswordResetNotification;
+use Carbon\Carbon;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -70,4 +72,21 @@ class User extends Authenticatable
             'password'          => 'hashed',
         ];
     }
+
+    public function scopeActive(Builder $query)
+    {
+        return $query->where('active', true);
+    }
+
+    public function scopeAdults(Builder $query)
+    {
+        return $query->where('birthday', '<=', Carbon::now()->subYears(18));
+    }
+
+    public function scopeTodaysBirthday(Builder $query)
+    {
+        return $query->whereMonth('birthday', date('m'))
+                     ->whereDay('birthday', date('d'));
+    }
+
 }
