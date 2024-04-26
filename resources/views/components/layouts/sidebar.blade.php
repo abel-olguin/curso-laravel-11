@@ -2,7 +2,7 @@
 <div id="drawer-navigation"
      class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform  bg-white dark:bg-gray-800"
      tabindex="-1" :class="{'-translate-x-full': !menuOpen, 'translate-none': menuOpen, }"
-     aria-labelledby="drawer-navigation-label">
+     aria-labelledby="drawer-navigation-label" x-cloak>
     <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">
         Menu</h5>
     <button @click="menuOpen = false" type="button" data-drawer-hide="drawer-navigation"

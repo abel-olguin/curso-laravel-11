@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dashboard\UpdateProfileRequest;
+use App\Jobs\UserImageOptimizeJob;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -26,7 +27,7 @@ class ProfileController extends Controller
         $data['image'] = Storage::disk('users')->put('images', $request->file('image'));
 
         auth()->user()->update($data);
-
+        UserImageOptimizeJob::dispatch(auth()->user());
         return redirect()->route('dashboard.profile.edit')->with('success', 'Profile updated successfully');
     }
 
