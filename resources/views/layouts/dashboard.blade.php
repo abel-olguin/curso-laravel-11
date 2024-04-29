@@ -6,10 +6,7 @@
     <meta name="csrf" content="{{ csrf_token() }}">
     <title>App Name - @yield('title')</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     @stack('scripts')
-
-    @vite(['resources/js/alpine.js'])
 </head>
 <body class="dark:text-gray-100 dark:bg-gray-500" x-data="{menuOpen: false}">
 <x-layouts.navbar/>

@@ -48,3 +48,6 @@ Route::name('dashboard.')
         Route::post('media', [MediaController::class, 'store'])
              ->name('media.upload');
     });
+
+
+Route::get('counter', \App\Livewire\Counter::class);
