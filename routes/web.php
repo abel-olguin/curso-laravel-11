@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 #Auth
 Route::name('auth.')->group(function () {
     #Auth login
-    Route::get('login', [LoginController::class, 'index'])->middleware('guest')->name('index');
+    Route::get('login', \App\Livewire\LoginComponent::class)->middleware('guest')->name('index');
     Route::post('login', [LoginController::class, 'login'])->middleware('guest')->name('login');
     Route::post('logout', [LoginController::class, 'logout'])->middleware('auth')->name('logout');
 
