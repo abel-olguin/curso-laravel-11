@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Livewire\Public;
 
 use App\Models\Post;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use Livewire\WithPagination;
 
-class PostListComponent extends Component
+class HomeComponent extends Component
 {
-    use WithPagination;
-
     public function render()
     {
-        return view('livewire.post-list-component');
+        return view('livewire.public.home-component');
     }
 
     #[Computed]

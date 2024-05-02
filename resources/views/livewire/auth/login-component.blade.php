@@ -5,15 +5,16 @@
             <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                 {{__('Login')}}
             </h1>
-            <form class="space-y-4 md:space-y-6" action="{{ route('auth.login') }}" method="post">
+            <form class="space-y-4 md:space-y-6" wire:submit="login" method="post">
 
                 @csrf
 
 
-                <x-forms.input label="Email" id="email" name="email" type="email" placeholder="Email"/>
+                <x-forms.input label="Email" id="email" name="email" type="email" placeholder="Email"
+                               wire:model="email"/>
 
                 <x-forms.input label="Password" id="password" name="password" type="password"
-                               placeholder="••••••••"/>
+                               placeholder="••••••••" wire:model="password"/>
 
                 <div class="flex items-center justify-between">
                     <div class="flex items-start">
@@ -26,7 +27,7 @@
                                    class="text-gray-500 dark:text-gray-300">{{__('Remember me')}}</label>
                         </div>
                     </div>
-                    <a href="{{route('auth.forgot-password.index')}}"
+                    <a wire:navigate href="{{route('auth.forgot-password.index')}}"
                        class="text-sm font-medium text-primary-600 dark:text-primary-500 text-gray-500 dark:text-gray-400 hover:dark:text-gray-300">
                         {{__('Forgot password?')}}
                     </a>
@@ -36,7 +37,7 @@
                 </button>
                 <p class="text-sm font-light text-gray-500 dark:text-gray-400">
                     {{__('Don’t have an account yet?')}}
-                    <a href="{{route('auth.register.index')}}"
+                    <a wire:navigate href="{{route('auth.register.index')}}"
                        class="font-medium text-primary-600 hover:dark:text-gray-300 dark:text-primary-500">
                         {{__('Sign up')}}
                     </a>

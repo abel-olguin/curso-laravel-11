@@ -16,6 +16,6 @@ class PostCardComponent extends Component
 
     public function render()
     {
-        return view('livewire.post-card-component');
+        return view('livewire.common.post-card-component');
     }
 }

@@ -24,6 +24,7 @@
            value="{{old($name, $value)}}"
         @required($required)
         @readonly($readonly)
+        {{$attributes}}
     >
 
     @error($name)
