@@ -6,10 +6,7 @@
                 {{__('Login')}}
             </h1>
             <form class="space-y-4 md:space-y-6" wire:submit="login" method="post">
-
                 @csrf
-
-
                 <x-forms.input label="Email" id="email" name="email" type="email" placeholder="Email"
                                wire:model="email"/>
 

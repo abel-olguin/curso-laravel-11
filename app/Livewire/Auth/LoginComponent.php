@@ -2,8 +2,6 @@
 
 namespace App\Livewire\Auth;
 
-use App\Http\Requests\LoginRequest;
-use App\Rules\MinRule;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Attributes\Validate;
@@ -27,7 +25,7 @@ class LoginComponent extends Component
             #return $this->redirect('/dashboard');
             #return $this->redirectRoute('dashboard.index');
             #return $this->redirectIntended(route('dashboard.index'));
-            
+
             return $this->redirectIntended(route('dashboard.index'), navigate: true);
         }
 
