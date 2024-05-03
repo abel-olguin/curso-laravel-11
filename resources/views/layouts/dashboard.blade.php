@@ -1,10 +1,10 @@
 <!doctype html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf" content="{{ csrf_token() }}">
-    <title>App Name - @yield('title')</title>
+    <title>{{$title ?? 'Post tile'}}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('scripts')
 </head>
@@ -16,7 +16,7 @@
     <x-alert type="error"/>
     <x-alert type="warning"/>
 
-    @yield('content')
+    {{ $slot }}
 </main>
 
 <x-layouts.footer/>

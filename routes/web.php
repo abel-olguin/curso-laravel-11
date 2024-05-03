@@ -9,6 +9,8 @@ use App\Http\Controllers\Dashboard\ProfileController;
 use App\Livewire\Auth\ForgotPasswordComponent;
 use App\Livewire\Auth\RegisterComponent;
 use App\Livewire\Auth\ResetPasswordComponent;
+use App\Livewire\Dashboard\DashboardComponent;
+use App\Livewire\Dashboard\Profile\ProfileComponent;
 use Illuminate\Support\Facades\Route;
 
 #Auth
@@ -34,12 +36,10 @@ Route::name('auth.')->group(function () {
 Route::name('dashboard.')
      ->middleware('auth')
      ->prefix('dashboard')->group(function () {
-        Route::get('/', fn() => view('dashboard.index'))->name('index');
+        Route::get('/', DashboardComponent::class)->name('index');
+        Route::get('profile', ProfileComponent::class)->name('profile.edit');
 
         Route::resource('posts', PostController::class)->except('show');
-
-        Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::post('profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::post('media', [MediaController::class, 'store'])
              ->name('media.upload');
     });
