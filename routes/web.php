@@ -1,15 +1,15 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;
-use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Dashboard\MediaController;
 use App\Http\Controllers\Dashboard\PostController;
-use App\Http\Controllers\Dashboard\ProfileController;
 use App\Livewire\Auth\ForgotPasswordComponent;
 use App\Livewire\Auth\RegisterComponent;
 use App\Livewire\Auth\ResetPasswordComponent;
 use App\Livewire\Dashboard\DashboardComponent;
+use App\Livewire\Dashboard\Post\CreatePostComponent;
+use App\Livewire\Dashboard\Post\EditPostComponent;
+use App\Livewire\Dashboard\Post\PostListComponent;
 use App\Livewire\Dashboard\Profile\ProfileComponent;
 use Illuminate\Support\Facades\Route;
 
@@ -39,8 +39,12 @@ Route::name('dashboard.')
         Route::get('/', DashboardComponent::class)->name('index');
         Route::get('profile', ProfileComponent::class)->name('profile.edit');
 
-        Route::resource('posts', PostController::class)->except('show');
-        Route::post('media', [MediaController::class, 'store'])
-             ->name('media.upload');
+        Route::get('posts', PostListComponent::class)->name('posts.index');
+        Route::get('posts/create', CreatePostComponent::class)->name('posts.create');
+        Route::get('posts/{post}/edit', EditPostComponent::class)->name('posts.edit');
+
+        Route::post('media', [MediaController::class, 'store'])->name('media.upload');
     });
+
+
 

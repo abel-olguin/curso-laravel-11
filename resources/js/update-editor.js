@@ -10,7 +10,6 @@ window.Livewire.hook('component.init', () => {
         open: false,
         editor: null,
         init() {
-            console.log('here')
             this.editor = new EditorJS({
                 holder: 'editor',
                 minHeight: 20,
@@ -64,9 +63,9 @@ window.Livewire.hook('component.init', () => {
         },
         beforeSend() {
             this.editor.save().then((data) => {
-                const component = window.Livewire.getByName('dashboard.post.create-post-component')[0].__instance
+                const component = window.Livewire.getByName('dashboard.post.edit-post-component')[0].__instance
                 component.reactive.form.description = data.blocks.length ? JSON.stringify(data) : ''
-                component.$wire.store()
+                component.$wire.update()
             }).catch((error) => {
                 console.log('Saving failed: ', error)
             });

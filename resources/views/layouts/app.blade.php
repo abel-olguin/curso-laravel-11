@@ -7,7 +7,6 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     @stack('scripts')
-
 </head>
 <body class="dark:text-gray-100 dark:bg-gray-500">
 <x-layouts.guest-navbar/>
@@ -16,6 +15,7 @@
     <x-alert type="error"/>
     <x-alert type="warning"/>
     {{ $slot }}
+
 </main>
 <x-layouts.footer/>
 </body>

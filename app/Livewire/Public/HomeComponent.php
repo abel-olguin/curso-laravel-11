@@ -3,6 +3,7 @@
 namespace App\Livewire\Public;
 
 use App\Models\Post;
+use App\Models\Scopes\FromUserScope;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -16,6 +17,7 @@ class HomeComponent extends Component
     #[Computed]
     public function posts()
     {
-        return Post::with('categories')->latest()->paginate();
+        return Post::withoutGlobalScope(FromUserScope::class)->with('categories')
+                   ->latest()->paginate();
     }
 }

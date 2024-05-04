@@ -18,15 +18,6 @@ class PostController extends Controller
     {
     }
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        #auth()->user() = new User()
-        $posts = auth()->user()->posts()->latest()->paginate();
-        return view('dashboard.posts.index', compact('posts'));
-    }
 
     /**
      * Store a newly created resource in storage.
