@@ -11,9 +11,9 @@ trait HasSort
         return ['created_at', 'id'];
     }
 
-    public function scopeWithSort(Builder $builder)
+    public function scopeWithSort(Builder $builder, $sortBy = null, $direction = null)
     {
-        $sortBy = request()->get('sortby', 'created_at');
+        $sortBy = $sortBy ?: request()->get('sortby', 'created_at');
 
         if (!method_exists($this, 'sortFields')) {
             abort(500, 'Sortable fields are not defined');
@@ -23,8 +23,8 @@ trait HasSort
             abort(400, 'Invalid sortby');
         }
 
-        $order = request()->get('sort') === 'desc' ? 'desc' : 'asc';
+        $direction = $direction ?: (request()->get('sortDirection') === 'desc' ? 'desc' : 'asc');
 
-        $builder->orderBy($sortBy, $order);
+        $builder->orderBy($sortBy, $direction);
     }
 }

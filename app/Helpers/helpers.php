@@ -14,3 +14,12 @@ function transactional(Closure $callback)
         dd($e);
     }
 }
+
+function sortLink($field)
+{
+    return route('dashboard.posts.index', [
+        'orderby'       => $field,
+        'sortDirection' => request()->get('orderby') === $field && request()->get('sortDirection') === 'asc' ? 'desc' :
+            'asc'
+    ]);
+}

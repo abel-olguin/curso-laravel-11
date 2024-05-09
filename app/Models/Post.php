@@ -65,4 +65,9 @@ class Post extends Model
          static::addGlobalScope(new FromUserScope);
      }
      */
+
+    public function __toString()
+    {
+        return $this->title;
+    }
 }

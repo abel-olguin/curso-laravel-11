@@ -8,8 +8,8 @@ trait HasQueryParams
 {
     use HasSort, HasSearch;
 
-    public function scopeWithQueryParams(Builder $builder, $search)
+    public function scopeWithQueryParams(Builder $builder, $search, $orderBy, $direction)
     {
-        return $builder->withSort()->withSearch($search)->paginate()->withQueryString();
+        return $builder->withSort($orderBy, $direction)->withSearch($search)->paginate();//->withQueryString()
     }
 }

@@ -14,28 +14,19 @@
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
                 <th scope="col" class="px-6 py-3">
-                    <a href="{{route('dashboard.posts.index',[
-                        'orderby' => 'id',
-                        'sort' => request()->get('orderby') === 'id' && request()->get('sort') === 'asc'?'desc':'asc'
-                        ])}}" wire:navigate>
+                    <button wire:click="setSort('id')">
                         #
-                    </a>
+                    </button>
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    <a href="{{route('dashboard.posts.index',[
-                        'orderby' => 'title',
-                        'sort' => request()->get('orderby') === 'title' && request()->get('sort') === 'asc'?'desc':'asc'
-                        ])}}" wire:navigate>
+                    <button wire:click="setSort('title')">
                         Title
-                    </a>
+                    </button>
                 </th>
                 <th scope="col" class="px-6 py-3">
-                    <a href="{{route('dashboard.posts.index',[
-                        'orderby' => 'description',
-                        'sort' => request()->get('orderby') === 'description' && request()->get('sort') === 'asc'?'desc':'asc'
-                        ])}}" wire:navigate>
+                    <button wire:click="setSort('description')">
                         Description
-                    </a>
+                    </button>
                 </th>
                 <th scope="col" class="px-6 py-3">
                     Actions
@@ -44,6 +35,7 @@
             </thead>
             <tbody>
             @foreach($this->posts as $post)
+
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                         {{$post->id}}

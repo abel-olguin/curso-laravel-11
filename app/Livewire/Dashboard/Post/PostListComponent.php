@@ -14,8 +14,21 @@ use Livewire\WithPagination;
 #[Layout('layouts.dashboard')]
 class PostListComponent extends Component
 {
+    use WithPagination;
+
     #[Url]
     public $search;
+
+    #[Url]
+    public $orderBy;
+
+    #[Url]
+    public $sortDirection;
+
+    public function updatingSortDirection($vale)
+    {
+        $this->resetPage();
+    }
 
     public function render()
     {
@@ -32,6 +45,13 @@ class PostListComponent extends Component
     #[Computed]
     public function posts()
     {
-        return Post::withQueryParams($this->search);
+        return Post::withQueryParams($this->search, $this->orderBy, $this->sortDirection);
+    }
+
+    public function setSort($field)
+    {
+        $this->sortDirection = $this->orderBy === $field && $this->sortDirection === 'asc' ? 'desc' : 'asc';
+
+        $this->orderBy = $field;
     }
 }
