@@ -1,7 +1,6 @@
 <div>
     <div class="flex justify-between items-center">
-        <a class="button-default" wire:navigate
-           href="{{route('dashboard.posts.create')}}">{{__('Create new post')}}</a>
+        <button class="button-default" wire:click="$dispatch('showCreatePostModal')">{{__('Create new post')}}</button>
 
 
         <input class="rounded border bg-gray-800 px-2 py-1" type="text" name="search"
@@ -73,4 +72,5 @@
 
         {{ $this->posts->onEachSide(5)->links() }}
     </div>
+    <livewire:modals.create-post-modal/>
 </div>

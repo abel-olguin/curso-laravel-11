@@ -23,7 +23,7 @@ trait HasSort
             abort(400, 'Invalid sortby');
         }
 
-        $direction = $direction ?: (request()->get('sortDirection') === 'desc' ? 'desc' : 'asc');
+        $direction = $direction ?: (request()->get('sortDirection') === 'asc' ? 'asc' : 'desc');
 
         $builder->orderBy($sortBy, $direction);
     }

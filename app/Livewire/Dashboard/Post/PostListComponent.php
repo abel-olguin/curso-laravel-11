@@ -7,6 +7,7 @@ use App\Models\Scopes\FromUserScope;
 use Illuminate\Support\Facades\Gate;
 use Livewire\Attributes\Computed;
 use Livewire\Attributes\Layout;
+use Livewire\Attributes\On;
 use Livewire\Attributes\Url;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -46,6 +47,12 @@ class PostListComponent extends Component
     public function posts()
     {
         return Post::withQueryParams($this->search, $this->orderBy, $this->sortDirection);
+    }
+
+    #[On('createdPost')]
+    public function onCreatedPost()
+    {
+        unset($this->posts);
     }
 
     public function setSort($field)

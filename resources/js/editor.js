@@ -11,60 +11,63 @@ window.Livewire.hook('component.init', () => {
         editor: null,
         init() {
             console.log('here')
-            this.editor = new EditorJS({
-                holder: 'editor',
-                minHeight: 20,
-                inlineToolbar: ['link', 'bold', 'italic',],
-                placeholder: 'Aquí tu contenido',
-                data,
-                readOnly,
-                tools: {
-                    header: {
-                        class: Header,
-                        inlineToolbar: true
-                    },
-                    list: {
-                        class: List,
-                        inlineToolbar: true
-                    },
-                    image: {
-                        class: Image,
-                        config: {
-                            endpoints: {
-                                byFile: '/dashboard/media',
+            window.Livewire.on('createPostModalEndRender', () => {
+                this.editor?.destroy();
+                this.editor = new EditorJS({
+                    holder: 'editor',
+                    minHeight: 20,
+                    inlineToolbar: ['link', 'bold', 'italic',],
+                    placeholder: 'Aquí tu contenido',
+                    data,
+                    readOnly,
+                    tools: {
+                        header: {
+                            class: Header,
+                            inlineToolbar: true
+                        },
+                        list: {
+                            class: List,
+                            inlineToolbar: true
+                        },
+                        image: {
+                            class: Image,
+                            config: {
+                                endpoints: {
+                                    byFile: '/dashboard/media',
+                                },
+                                additionalRequestData: {
+                                    _token: document.querySelector('meta[name="csrf"]')?.content
+                                }
                             },
-                            additionalRequestData: {
-                                _token: document.querySelector('meta[name="csrf"]')?.content
-                            }
-                        },
 
-                    },
-                    quote: {
-                        class: Quote,
-                        inlineToolbar: true,
-                        shortcut: 'CMD+SHIFT+O',
-                        config: {
-                            quotePlaceholder: 'Enter a quote',
-                            captionPlaceholder: 'Quote\'s author',
+                        },
+                        quote: {
+                            class: Quote,
+                            inlineToolbar: true,
+                            shortcut: 'CMD+SHIFT+O',
+                            config: {
+                                quotePlaceholder: 'Enter a quote',
+                                captionPlaceholder: 'Quote\'s author',
+                            },
+                        },
+                        embed: {
+                            class: Embed,
+                            config: {
+                                services: {
+                                    youtube: true,
+                                    twitter: true,
+                                    instagram: true,
+                                    facebook: true,
+                                }
+                            }
                         },
                     },
-                    embed: {
-                        class: Embed,
-                        config: {
-                            services: {
-                                youtube: true,
-                                twitter: true,
-                                instagram: true,
-                                facebook: true,
-                            }
-                        }
-                    },
-                },
+                })
             })
         },
         beforeSend() {
             this.editor.save().then((data) => {
-                const component = window.Livewire.getByName('dashboard.post.create-post-component')[0].__instance
+                const component = window.Livewire.getByName('modals.create-post-modal')[0].__instance
                 component.reactive.form.description = data.blocks.length ? JSON.stringify(data) : ''
                 component.$wire.store()
             }).catch((error) => {

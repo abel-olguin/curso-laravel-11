@@ -25,6 +25,7 @@ class CreatePostForm extends Form
             $post           = Post::create($data);
             $categoryHelper = new CategoryHelper();
             $categoryHelper->attachPostCategories($post, $categories);
+            $this->reset();
         });
     }
 
