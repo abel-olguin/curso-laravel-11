@@ -6,12 +6,12 @@ import Quote from "@editorjs/quote";
 import Embed from "@editorjs/embed";
 
 window.Livewire.hook('component.init', () => {
-    Alpine.data('editor', (data = {}, readOnly = false) => ({
+    Alpine.data('updateEditor', (data = {}, readOnly = false) => ({
         open: false,
         editor: null,
         init() {
             this.editor = new EditorJS({
-                holder: 'editor',
+                holder: 'update-editor',
                 minHeight: 20,
                 inlineToolbar: ['link', 'bold', 'italic',],
                 placeholder: 'Aquí tu contenido',
@@ -63,7 +63,7 @@ window.Livewire.hook('component.init', () => {
         },
         beforeSend() {
             this.editor.save().then((data) => {
-                const component = window.Livewire.getByName('dashboard.post.edit-post-component')[0].__instance
+                const component = window.Livewire.getByName('modals.edit-post-modal')[0].__instance
                 component.reactive.form.description = data.blocks.length ? JSON.stringify(data) : ''
                 component.$wire.update()
             }).catch((error) => {

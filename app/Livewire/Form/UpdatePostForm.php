@@ -58,9 +58,8 @@ class UpdatePostForm extends Form
         $categoriesArray = explode(',', $this->categories);
         $categoriesArray = array_map('trim', $categoriesArray);
 
-
         $attributes['slug']       = $cambioTitulo ? $slug : $this->post->slug;
-        $attributes['categories'] = array_unique($categoriesArray);
+        $attributes['categories'] = array_filter(array_unique($categoriesArray));
 
         return $attributes;
     }

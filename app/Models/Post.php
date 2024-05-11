@@ -50,7 +50,7 @@ class Post extends Model
             }
 
             return implode(' ', $block['data']['items']);//si es de tipo lista convertimos los elementos en un string
-        }, $decodedDescription['blocks']);
+        }, $decodedDescription['blocks'] ?? []);
 
         return new Attribute(
             get: fn() => str(implode(' ', $result))->excerpt(),// lo que hay en la descripcion + mundo

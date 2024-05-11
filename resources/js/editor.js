@@ -10,7 +10,7 @@ window.Livewire.hook('component.init', () => {
         open: false,
         editor: null,
         init() {
-            console.log('here')
+            console.log('init editor')
             window.Livewire.on('createPostModalEndRender', () => {
                 this.editor?.destroy();
                 this.editor = new EditorJS({

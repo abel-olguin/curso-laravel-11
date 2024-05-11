@@ -17,6 +17,9 @@ class PostListComponent extends Component
 {
     use WithPagination;
 
+    public Post $currentPost;
+
+    public $showEditModal = false;
     #[Url]
     public $search;
 
@@ -25,6 +28,17 @@ class PostListComponent extends Component
 
     #[Url]
     public $sortDirection;
+
+    public function boot()
+    {
+        $this->currentPost = new Post();
+    }
+
+    public function setCurrentPost(Post $post)
+    {
+        $this->currentPost   = $post;
+        $this->showEditModal = true;
+    }
 
     public function updatingSortDirection($vale)
     {
@@ -55,10 +69,22 @@ class PostListComponent extends Component
         unset($this->posts);
     }
 
+    #[On('updatedPost')]
+    public function onUpdatedPost()
+    {
+
+        $this->showEditModal = false;
+    }
+
     public function setSort($field)
     {
         $this->sortDirection = $this->orderBy === $field && $this->sortDirection === 'asc' ? 'desc' : 'asc';
 
         $this->orderBy = $field;
+    }
+
+    public function hideEditModal()
+    {
+        $this->showEditModal = false;
     }
 }
