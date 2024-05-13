@@ -34,9 +34,9 @@ class Post extends Model
         return ['created_at', 'id', 'title', 'description'];
     }
 
-    public function searchFields()
+    public function searchFields(): array
     {
-        return ['title', 'description'];
+        return ['title', 'description', 'categories.name', 'categories.id'];//, 'categories.slug'
     }
 
     public function excerpt(): Attribute
