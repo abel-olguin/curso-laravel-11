@@ -33,8 +33,13 @@
                                     class="w-full rounded shadow bg-gray-500 hover:bg-gray-600 py-2">
                                 Cancel
                             </button>
-                            <button type="submit" class="w-full rounded shadow bg-cyan-500 hover:bg-cyan-600 py-2">
-                                {{__('Save')}}
+                            <button type="submit"
+                                    wire:loading.attr="disabled"
+                                    wire:loading.class="bg-gray-500"
+                                    wire:loading.class.remove="bg-cyan-500"
+                                    class="w-full rounded shadow bg-cyan-500 hover:bg-cyan-600 py-2">
+                                <span wire:loading.class="hidden">{{__('Save')}}</span>
+                                <span wire:loading>{{__('Cargando...')}}</span>
                             </button>
                         </div>
                     </form>

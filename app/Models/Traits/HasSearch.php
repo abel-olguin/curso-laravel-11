@@ -50,7 +50,7 @@ trait HasSearch
      * @param array $fields
      * @return mixed
      */
-    protected function getRelationalFields(array $fields): mixed
+    protected function getRelationalFields(array $fields): array
     {
         return array_reduce($fields, function ($result, $field) {
             if (str_contains($field, '.')) {   // si contiene un punto

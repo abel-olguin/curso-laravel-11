@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf" content="{{ csrf_token() }}">
     <title>{{$title ?? 'Post tile'}}</title>
+    <meta name="description" value="{{$description ?? 'Description'}}">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @stack('scripts')
 </head>

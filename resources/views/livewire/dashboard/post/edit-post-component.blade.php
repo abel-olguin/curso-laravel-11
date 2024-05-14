@@ -1,8 +1,10 @@
 @push('scripts')
     @vite(['resources/js/update-editor.js'])
 @endpush
-
+<x-slot:description>{{$post->excerpt}}</x-slot:description>
 <div class="min-h-screen ">
+    {{$active ? 'activo' : 'inactivo'}}
+    <button wire:click="test">Toggle</button>
     <div class="mx-auto flex justify-center">
         <div
             class="w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -14,7 +16,7 @@
                 <form class="space-y-4 md:space-y-6" x-data="editor({{$form->description}})"
                       id="post-form"
                       method="post" @submit.prevent="beforeSend">
-                    <x-forms.input wire:model="form.title" label="Title" id="title" name="form.title"/>
+                    <x-forms.input wire:model.live="form.title" label="Title" id="title" name="form.title"/>
 
 
                     <x-forms.input wire:model="form.categories" label="Categories" id="categories"
