@@ -1,6 +1,7 @@
 <div>
     <div class="flex justify-between items-center">
-        <button class="button-default" wire:click="$dispatch('showCreatePostModal')">{{__('Create new post')}}</button>
+        <button class="button-default"
+                wire:click="$dispatchTo('modals.create-post-modal','showCreatePostModal')">{{__('Create new post')}}</button>
 
 
         <input class="rounded border bg-gray-800 px-2 py-1" type="text" name="search"
@@ -72,7 +73,9 @@
 
         {{ $this->posts->onEachSide(5)->links() }}
     </div>
-    <livewire:modals.create-post-modal/>
-    <livewire:modals.edit-post-modal :post="$currentPost" :show="$showEditModal"
+    <livewire:modals.create-post-modal @on-post-saved="$commit"/>
+
+    <livewire:modals.edit-post-modal @on-post-saved="test"
+                                     :post="$currentPost" :show="$showEditModal"
                                      wire:key="modal-{{$currentPost?->id}}"/>
 </div>

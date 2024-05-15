@@ -28,7 +28,7 @@ class EditPostModal extends Component
         $this->form->update();
 
         session()->flash('message', 'Post successfully updated.');
-        $this->dispatch('updatedPost');
+        $this->dispatch('on-post-saved');
     }
 
     public function render()

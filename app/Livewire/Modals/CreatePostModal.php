@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Modals;
 
+use App\Livewire\Dashboard\Post\PostListComponent;
 use App\Livewire\Form\CreatePostForm;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -22,7 +23,7 @@ class CreatePostModal extends Component
         $this->form->store();
 
         session()->flash('message', 'Post successfully created.');
-        $this->dispatch('createdPost');
+        $this->dispatch('on-post-saved');
         $this->show = false;
     }
 

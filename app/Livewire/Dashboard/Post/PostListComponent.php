@@ -63,19 +63,6 @@ class PostListComponent extends Component
         return Post::withQueryParams($this->search, $this->orderBy, $this->sortDirection);
     }
 
-    #[On('createdPost')]
-    public function onCreatedPost()
-    {
-        unset($this->posts);
-    }
-
-    #[On('updatedPost')]
-    public function onUpdatedPost()
-    {
-
-        $this->showEditModal = false;
-    }
-
     public function setSort($field)
     {
         $this->sortDirection = $this->orderBy === $field && $this->sortDirection === 'asc' ? 'desc' : 'asc';
